@@ -1,0 +1,47 @@
+Question:You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N.
+Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node:
+
+Root: If node is root node.
+Leaf: If node is leaf node.
+Inner: If node is neither root nor leaf node.
+
+eg:
+     5
+  /     \
+ 2       6
+/         \
+1         7
+
+5--->Root
+2,6--->Inner
+1,7--->Leaf(No Children)
+
+
+Solution:
+SELECT N,
+CASE
+WHEN P is NULL THEN 'Root'
+WHEN N IN (SELECT P FROM BST) THEN 'Inner'
+else 'Leaf'
+end from bst
+order by N;
+
+
+
+
+Breakdown:
+SELECT N: This statement selects column N(Node)
+CASE:Similar to if else,in sql we have case when statement.
+WHEN P is NULL THEN 'Root':Checks if value of P is  NULL,if true then that node N is Root;
+WHEN N IN (SELECT P FROM BST) THEN 'Inner': ---
+                                              |
+                                              v
+                                            SELECT P FROM BST creates a list of all parent nodes in the BST
+                                           SELECT N (" Above statement ") checks whether the current node N is a part of the values in the P column
+                                           If yes then prints "Inner";
+ELSE if none of the above are true then it is a leaf node(node with no children),prints "Leaf"
+
+ORDER BY N : Sorts the values of N in ascending order;
+
+
+----PEACE✌️----
