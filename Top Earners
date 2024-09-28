@@ -1,0 +1,11 @@
+Type:Aggregation
+
+Name:Top Earners
+Problem Statement:'Print the max employees,along with total employees who achieved the same salary;
+
+
+Solution:
+Select MAX(Salary*months),Count(*) from employee,where (salary*month)>=MAX(salary*month);
+Explaination:
+Calculate Max earning with aggregate function MAX and earning=salary*months;
+Count(*) counts all the employees , who earned the same earnings.
