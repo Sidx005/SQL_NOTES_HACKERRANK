@@ -1,0 +1,56 @@
+Problem Name:New Companies
+Type:Advanced Select
+Statement:"A conglomerate acquired some new companies,they follow a hierarchy,which goes like this:
+                  Founder
+                    ||    
+                    VV
+               Lead_Manager
+                    ||    
+                    VV
+               Senior_Manager
+                    ||    
+                    VV
+                  Manager
+                    ||    
+                    VV
+                 Employee 
+
+
+    ,company_code, founder name, Print the total number of lead managers, total number of senior managers, total number of managers, and total number of employees."
+
+Constraints:'1. Sorting not done in numeric order, 2.May contain duplicate words'
+
+Link:'https://www.hackerrank.com/challenges/the-company/problem?isFullScreen=true'
+
+
+
+
+
+Solution:
+SELECT company_code,founder,
+(SELECT COUNT(DISTINCT lead_manager_code) FROM LEAD_MANAGER WHERE COMPANY_CODE=C.COMPANY_CODE
+),
+(SELECT COUNT(DISTINCT SENIOR_MANAGER_CODE) FROM SENIOR_MANAGER WHERE COMPANY_CODE=C.COMPANY_CODE ),
+(SELECT COUNT(DISTINCT MANAGER_CODE) FROM MANAGER WHERE COMPANY_CODE=C.COMPANY_CODE ),
+(SELECT COUNT(DISTINCT EMPLOYEE_CODE) FROM EMPLOYEE WHERE COMPANY_CODE=C.COMPANY_CODE )
+FROM COMPANY C
+ORDER BY COMPANY_CODE;
+
+Explaination:
+This query retrieves the company code, founder, and the count of distinct lead managers, senior managers, managers, and employees for each company. It does this by using subqueries to count unique entries in each relevant table.
+
+company_code: The unique ID of the company.
+founder: The founder's name.
+The subqueries count the distinct number of:
+Lead managers in the LEAD_MANAGER table.
+Senior managers in the SENIOR_MANAGER table.
+Managers in the MANAGER table.
+Employees in the EMPLOYEE table.
+
+
+
+
+-- Selecting company code and founder from the company table
+-- Subqueries are used to count the distinct lead managers, senior managers, managers, and employees
+
+
