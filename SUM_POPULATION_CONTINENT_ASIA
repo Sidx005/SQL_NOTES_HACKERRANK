@@ -1,0 +1,28 @@
+Problem:Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+Type:Join
+
+Solution:
+SELECT SUM(CITY.POPULATION)
+FROM CITY
+INNER JOIN COUNTRY
+ON CITY.CountryCode = COUNTRY.Code
+WHERE COUNTRY.CONTINENT = 'Asia';
+
+
+ Explanation:
+
+1.  SUM(CITY.POPULATION) :
+   - This function calculates the  total population  by summing up the values from the POPULATION column in the CITY table. The CITY.POPULATION refers to the population of each city.
+
+2.  FROM CITY INNER JOIN COUNTRY :
+   - The INNER JOIN operation combines rows from the CITY and COUNTRY tables where there is a match based on the specified condition in the ON clause.
+   -  INNER JOIN  means that only the rows that have matching values in both the CITY and COUNTRY tables are selected.
+
+3.  ON CITY.CountryCode = COUNTRY.Code :
+   - This specifies the condition for the join: the CountryCode column in the CITY table should match the Code column in the COUNTRY table. This relationship allows us to link each city to the corresponding country.
+
+4.  WHERE COUNTRY.CONTINENT = 'Asia' :
+   - This condition filters the results to only include cities located in countries where the CONTINENT is 'Asia'. The COUNTRY.CONTINENT column indicates which continent each country belongs to, and the filter ensures that only Asian countries are considered.
+
