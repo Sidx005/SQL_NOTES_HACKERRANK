@@ -1,0 +1,18 @@
+Problem:A median is defined as a number separating the higher half of a data set from the lower half. Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to  decimal places.
+Name:Weather Observation 20
+Type:Aggregation
+Query:  SELECT ROUND(S.LAT_N,4) FROM STATION S WHERE (SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N<S.LAT_N)=(SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N>S.LAT_N);
+
+Explaination:
+This query follows the approach where we find a index(Latitude North as LAT_N) where all the indexes lesser than that index are equal to the number of indexes greater than that index;
+and we round it upto 4 decimal places
+
+
+The first subquery (SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N < S.LAT_N) counts how many latitudes are less than the current latitude (S.LAT_N).
+
+The second subquery (SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N > S.LAT_N) counts how many latitudes are greater than the current latitude.
+
+
+
+
+Here 'S' is used as an alias for the table STATION and S.LAT_N refers to LAT_N column in the table Station
