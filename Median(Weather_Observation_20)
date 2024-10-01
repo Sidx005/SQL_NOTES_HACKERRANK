@@ -15,4 +15,8 @@ The second subquery (SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N > S.LAT_N) cou
 
 
 
-Here 'S' is used as an alias for the table STATION and S.LAT_N refers to LAT_N column in the table Station
+Here 'S' is used as an alias for the table STATION and S.LAT_N refers to LAT_N column in the table Station.
+
+
+NOTE:This query works for only odd no of data,for even and odd i.e for all the cases,use the in-built  Median function ,which will be more efficient.
+    The query goes like: SELECT ROUND(MEDIAN(LAT_N),4) FROM STATION; this one works only on oracle server.
